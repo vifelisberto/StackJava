@@ -29,16 +29,28 @@ public class PilhaDinamica implements TADPilha {
 
     @Override
     public void push(int elemento) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Node novo = new Node(elemento);
+        novo.proximo = topo;
+        topo = novo;
     }
 
     @Override
     public int pop() throws EmptyStackException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (!isEmpty()) {
+            Node aux = topo;
+            topo = topo.proximo;
+            aux.proximo = null;
+
+            return aux.elemento;
+        }
+        throw new EmptyStackException();
     }
 
     @Override
     public int top() throws EmptyStackException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (!isEmpty()) {
+            return topo.elemento;
+        }
+        throw new EmptyStackException();
     }
 }
